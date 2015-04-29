@@ -108,9 +108,6 @@ describe Teaspoon::Configuration::Suite do
     expect(subject.helper).to eq("spec_helper")
     expect(subject.javascripts).to eq(["jasmine/1.3.1", "teaspoon/jasmine1"])
     expect(subject.stylesheets).to eq(["teaspoon"])
-    expect(subject.no_coverage).to eq([
-      %r{/.rvm/gems/}, %r{/lib/ruby/gems/}, %r{/vendor/assets/}, %r{/support/}, %r{/(.+)_helper.}
-    ])
     expect(subject.expand_assets).to eq(true)
   end
 
@@ -166,6 +163,9 @@ describe Teaspoon::Configuration::Coverage do
   it "has the default configuration" do
     expect(subject.reports).to eq(["text-summary"])
     expect(subject.output_path).to eq("coverage")
+    expect(subject.ignore).to eq([
+      %r{/.rvm/gems/}, %r{/lib/ruby/gems/}, %r{/vendor/assets/}, %r{/support/}, %r{/(.+)_helper.}
+    ])
     expect(subject.statements).to be_nil
     expect(subject.functions).to be_nil
     expect(subject.branches).to be_nil
